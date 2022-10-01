@@ -46,11 +46,11 @@ io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId, userName) => {
     socket.join(roomId);
     socket.broadcast.to(roomId).emit("user-connected",userId,userName)
-
+  //socket connection for chat messages
     socket.on("message", (message) => {
       io.to(roomId).emit("createMessage", message, userName);
     });
-
+  //socket broadcast for typing feature
     socket.on("typing",() => {
       socket.broadcast.to(roomId).emit("typing",userName);
     });
@@ -58,6 +58,7 @@ io.on("connection", (socket) => {
     socket.on("stoppedTyping",() => {
       socket.broadcast.to(roomId).emit("stoppedTyping");
     })
+    //this gets  called when a user disconnects
     socket.on('disconnect', () => {
       socket.broadcast.to(roomId).emit('user-disconnected', userId)
     })
