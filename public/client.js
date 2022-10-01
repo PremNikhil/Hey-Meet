@@ -44,6 +44,7 @@ var peers = {};
 var currentPeer = [];
 var currentUser;
 
+  //Variable for storing our current video stream
 var myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
@@ -91,6 +92,7 @@ navigator.mediaDevices
     })
   });
 
+ //When a new user connects to our chat room
 const connectToNewUser = (userId, stream) => {
   // Call a peer, providing our mediaStream
   const call = peer.call(userId, stream);
@@ -346,6 +348,7 @@ backBtn.addEventListener("click", () => {
 
 //****************************// PING INFO //****************************//
 
+  //Getting the data from JavaScript
 var ResponseTime = document.getElementById("rtt-value");
 var networkInfo = document.getElementById("network-content");
 
